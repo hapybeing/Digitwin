@@ -1,0 +1,245 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(135deg, #05060a 0%, #0f1119 50%, #0a0d14 100%);
+  color: #e0e8ff;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body.eco-mode {
+  background: #0a0d14;
+  color: #a8b8d8;
+}
+
+/* Mesh Gradient Background */
+.mesh-gradient {
+  position: relative;
+  background: linear-gradient(135deg, #05060a 0%, #1a1d2e 25%, #0f1119 50%, #2a2d4a 75%, #0a0d14 100%);
+  overflow: hidden;
+}
+
+.mesh-gradient::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(57, 255, 20, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -200px;
+  right: -200px;
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.mesh-gradient::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(191, 64, 191, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: -300px;
+  left: -300px;
+  animation: float 10s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(26, 29, 46, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(57, 255, 20, 0.1);
+  border-radius: 12px;
+}
+
+.glass.accent {
+  border-color: rgba(57, 255, 20, 0.3);
+  background: rgba(26, 29, 46, 0.6);
+}
+
+/* Bioluminescent Glow */
+.glow-green {
+  text-shadow: 0 0 20px rgba(57, 255, 20, 0.5),
+               0 0 40px rgba(57, 255, 20, 0.25);
+  color: #39ff14;
+}
+
+.glow-purple {
+  text-shadow: 0 0 20px rgba(191, 64, 191, 0.5),
+               0 0 40px rgba(191, 64, 191, 0.25);
+  color: #bf40bf;
+}
+
+.glow-cyan {
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.4),
+               0 0 40px rgba(0, 255, 255, 0.2);
+  color: #00ffff;
+}
+
+/* Magnetic Button Base */
+.magnetic-btn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(57, 255, 20, 0.2);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.magnetic-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Kinetic Typography */
+.kinetic-text {
+  display: inline-block;
+  font-size: clamp(2rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  overflow: hidden;
+}
+
+.kinetic-text span {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.kinetic-text:hover span {
+  transform: translateY(-100%);
+}
+
+/* Spatial Scroll - Z-axis Depth */
+.spatial-container {
+  perspective: 1000px;
+  position: relative;
+}
+
+.spatial-item {
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-out;
+}
+
+/* Parallax Effect */
+.parallax {
+  position: relative;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(-1px) scale(1.5);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Floating Cards */
+.float-card {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Liquid Blob Animation */
+.liquid-blob {
+  animation: morph 4s ease-in-out infinite;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.scroll-indicator svg {
+  width: 24px;
+  height: 24px;
+  stroke: #39ff14;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kinetic-text {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+  }
+
+  .mesh-gradient::before,
+  .mesh-gradient::after {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Eco Mode Overrides */
+body.eco-mode {
+  --tw-shadow: none !important;
+}
+
+body.eco-mode .glow-green,
+body.eco-mode .glow-purple,
+body.eco-mode .glow-cyan {
+  text-shadow: none;
+  color: inherit;
+}
+
+body.eco-mode .mesh-gradient::before,
+body.eco-mode .mesh-gradient::after {
+  opacity: 0.3;
+}
+
+body.eco-mode .glass {
+  border-color: rgba(168, 184, 216, 0.2);
+  background: rgba(26, 29, 46, 0.3);
+}
+
+/* Smooth Scroll Behavior */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
